@@ -2,16 +2,16 @@ pipeline {
     agent any
 
     environment {
-        GIT_CREDENTIALS_ID = 'github-token'  // <-- Replace with your actual credential ID if different
+        GIT_CREDENTIALS_ID = 'github-token'  // Must match the ID you set in Jenkins
     }
 
     stages {
         stage('Clone Repo') {
             steps {
                 git(
-                    url: 'https://github.com/sireesha-chowdari/myapp.git',
-                    credentialsId: "${GIT_CREDENTIALS_ID}",
-                    branch: 'main'
+                    url: 'https://github.com/sireesha-chowdari/myapp.git',  // ✅ Use your actual repo URL
+                    credentialsId: "${GIT_CREDENTIALS_ID}",                 // ✅ Use the saved credentials
+                    branch: 'main'                                          // ✅ Use the correct branch
                 )
             }
         }
@@ -19,16 +19,17 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 echo 'Installing dependencies...'
-                // Add install commands here
+                // Your install steps
             }
         }
 
         stage('Run App') {
             steps {
                 echo 'Running app...'
-                // Add run commands here
+                // Your run steps
             }
         }
     }
 }
+
 
